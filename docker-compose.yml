@@ -1,0 +1,18 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./candycbt_web/candycbt:/var/www/html
+    depends_on:
+      - db
+  db:
+    image: mariadb:10.1.37
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: candycbtv23
+    volumes:
+      - db_data:/var/lib/mysql
+volumes:
+  db_data:
